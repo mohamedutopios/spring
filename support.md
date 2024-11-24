@@ -676,7 +676,6 @@ Spring facilite l’interaction avec les bases de données grâce à des abstrac
 
 ### Le conteneur Spring
 
-
 #### Les composants essentiels : Core, accès aux données, WebMVC.
 
 <div style="font-size:19px">
@@ -1106,315 +1105,2473 @@ Le module **WebMVC** est conçu pour développer des applications web, principal
 
 ---
 
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Nouveaux types de contextes dans Apache HTTPD 2.4**
+### Le conteneur Spring
 
 
-<div style="font-size:18px">
+#### L’apport de Spring Boot
 
-Apache HTTPD 2.4 introduit des fonctionnalités permettant une gestion plus fine des configurations grâce à de nouveaux **types de contextes**. Ces contextes permettent de personnaliser les comportements selon des conditions ou des environnements spécifiques.
-
-#### **Principaux contextes et leur usage :**
-
-1. **Directives conditionnelles avec `<If>` :**
-   - Permet d'évaluer des conditions dynamiques dans les fichiers de configuration.
-   - Syntaxe :
-     ```conf
-     <If "%{HTTP_HOST} == 'example.com'">
-       DocumentRoot "/var/www/example"
-     </If>
-     ```
-   - Supporte les expressions complexes :
-     - Accès à des variables d'environnement (`%{ENV:VARIABLE}`).
-     - Comparaisons entre en-têtes HTTP (`%{HTTP_*}`).
-     - Expression booléenne complexe (`&&`, `||`, `!`).
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Nouveaux types de contextes dans Apache HTTPD 2.4**
-
-
-<div style="font-size:27px">
-
-#### **Principaux contextes et leur usage :**
-
-2. **Directives dynamiques avec `<ElseIf>` et `<Else>` :**
-   - Exemple :
-     ```conf
-     <If "%{HTTP_HOST} == 'example.com'">
-       DocumentRoot "/var/www/example"
-     <ElseIf "%{HTTP_HOST} == 'example.org'">
-       DocumentRoot "/var/www/example_org"
-     <Else>
-       DocumentRoot "/var/www/default"
-     </Else>
-     ```
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Nouveaux types de contextes dans Apache HTTPD 2.4**
-
-
-<div style="font-size:28px">
-
-#### **Principaux contextes et leur usage :**
-
-3. **Directives `IncludeOptional` :**
-   - Permet d’inclure des fichiers optionnels, évitant les erreurs si un fichier est absent.
-   - Exemple :
-     ```conf
-     IncludeOptional conf.d/*.conf
-     ```
-
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Nouveaux types de contextes dans Apache HTTPD 2.4**
-
-
-<div style="font-size:28px">
-
-#### **Principaux contextes et leur usage :**
-
-4. **Directives spécifiques au trafic avec `<IfModule>` :**
-   - Active une configuration seulement si un module est chargé.
-   - Exemple :
-     ```conf
-     <IfModule mod_ssl.c>
-       Listen 443
-       SSLEngine on
-     </IfModule>
-     ```
-
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Panorama des modules d'Apache 2.4**
-
-
-<div style="font-size:30px">
-
-Apache HTTPD 2.4 offre une large gamme de modules pour diverses fonctionnalités. Voici un aperçu des catégories principales et des modules les plus utiles.
-
-#### **Catégorie : Performance**
-- **`mod_http2`** : Support HTTP/2.
-- **`mod_cache`** : Mise en cache des contenus.
-- **`mod_deflate`** : Compression des contenus.
-- **`mod_expires`** : Contrôle des en-têtes de cache HTTP.
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Panorama des modules d'Apache 2.4**
-
-
-<div style="font-size:30px">
-
-#### **Catégorie : Sécurité**
-- **`mod_ssl`** : Support SSL/TLS.
-- **`mod_security`** : Protection contre les attaques (pare-feu applicatif).
-- **`mod_authz_core`** : Cadre centralisé pour l'autorisation.
-- **`mod_authn_dbd`** : Authentification via base de données.
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Panorama des modules d'Apache 2.4**
-
-
-<div style="font-size:28px">
-
-#### **Catégorie : Proxy**
-- **`mod_proxy`** : Support du proxy HTTP/HTTPS.
-- **`mod_proxy_http`** : Proxy pour le trafic HTTP.
-- **`mod_proxy_balancer`** : Équilibrage de charge.
-- **`mod_proxy_wstunnel`** : Proxy pour WebSocket.
-
-#### **Catégorie : Journalisation**
-- **`mod_log_config`** : Configuration avancée des logs.
-- **`mod_logio`** : Ajoute des informations sur la taille des réponses dans les logs.
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Panorama des modules d'Apache 2.4**
-
-
-<div style="font-size:28px">
-
-#### **Catégorie : Réécriture et redirection**
-- **`mod_rewrite`** : Réécriture d'URL avancée.
-- **`mod_alias`** : Redirection simple.
-
-#### **Catégorie : Autres fonctionnalités**
-- **`mod_cgi`** : Support des scripts CGI.
-- **`mod_dav`** : Prise en charge du protocole WebDAV.
-- **`mod_headers`** : Modification des en-têtes HTTP.
-- **`mod_dir`** : Gestion des répertoires (pages index).
-
-</div>
-
----
-
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Panorama des modules d'Apache 2.4**
-
+<br>
 
 <div style="font-size:35px">
 
-#### **Gestion des modules dynamiques :**
-- Les modules sont chargés dynamiquement via la directive `LoadModule` :
-  ```conf
-  LoadModule rewrite_module modules/mod_rewrite.so
-  LoadModule ssl_module modules/mod_ssl.so
-  ```
-- Vérifiez les modules chargés :
-  ```bash
-  apachectl -M
-  ```
+Spring Boot simplifie le développement d’applications Spring en réduisant les efforts de configuration et en favorisant une approche conventionnelle avec des valeurs par défaut optimales.
 
 </div>
 
 ---
 
-## Apache HTTPD 2.4 : rappels et nouveautés
+### Le conteneur Spring
 
-#### **Support du protocole HTTP/2**
 
+#### L’apport de Spring Boot
+
+<br>
+
+<div style="font-size:27px">
+
+### **1. Gestion des dépendances Maven**
+- **Starter Dependencies :** 
+  - Spring Boot introduit des **"starters"**, des dépendances préconfigurées pour intégrer rapidement des technologies.
+  - Exemple : 
+    - `spring-boot-starter-web` : Inclut Spring MVC, Tomcat, et JSON (via Jackson).
+    - `spring-boot-starter-data-jpa` : Inclut Hibernate, Spring Data JPA, et un connecteur de base de données.
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’apport de Spring Boot
+
+<div style="font-size:19px">
+
+### **1. Gestion des dépendances Maven**
+- **Simplification de la gestion des versions :**
+  - Spring Boot utilise un **parent POM** (`spring-boot-starter-parent`) qui gère les versions compatibles des dépendances.
+  - Cela évite les conflits de version dans le projet.
+  - Exemple de configuration Maven :
+    ```xml
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.1.4</version>
+    </parent>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+    ```
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’apport de Spring Boot
+
+<div style="font-size:24px">
+
+### **1. Gestion des dépendances Maven**
+- **Personnalisation via un BOM (Bill of Materials) :**
+  - Permet de gérer les versions des dépendances dans un fichier centralisé.
+    ```xml
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>3.1.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+    ```
+</div>
+
+---
+### Le conteneur Spring
+
+
+#### L’apport de Spring Boot
+
+<div style="font-size:19px">
+
+### **2. Configuration automatique**
+- **Principe :**
+  - Spring Boot analyse les dépendances du projet et configure automatiquement les composants requis.
+  - Remplace les fichiers XML et réduit les annotations nécessaires.
+
+- **Annotations clés :**
+  - `@SpringBootApplication` : Combinaison de :
+    - `@Configuration` : Indique que la classe contient des Beans configurés.
+    - `@EnableAutoConfiguration` : Active la configuration automatique en fonction des dépendances.
+    - `@ComponentScan` : Recherche les composants dans le package actuel et ses sous-packages.
+
+  ```java
+  @SpringBootApplication
+  public class MyApplication {
+      public static void main(String[] args) {
+          SpringApplication.run(MyApplication.class, args);
+      }
+  }
+  ```
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’apport de Spring Boot
+
+<div style="font-size:24px">
+
+### **2. Configuration automatique**
+- **Exemples de configuration automatique :**
+  - **Base de données :**
+    - Si `spring-boot-starter-data-jpa` est inclus et une base de données est détectée (par ex., H2 ou PostgreSQL), Spring configure automatiquement :
+      - Le DataSource.
+      - Hibernate.
+    - Exemple de fichier `application.properties` :
+      ```properties
+      spring.datasource.url=jdbc:h2:mem:testdb
+      spring.datasource.driver-class-name=org.h2.Driver
+      spring.jpa.hibernate.ddl-auto=update
+      ```
+
+</div>
+
+---
+
+
+### Le conteneur Spring
+
+
+#### L’apport de Spring Boot
+
+<div style="font-size:24px">
+
+### **2. Configuration automatique**
+- **Exemples de configuration automatique :**
+  - **Serveur Web :**
+    - Inclusion de `spring-boot-starter-web` :
+      - Configure automatiquement Tomcat comme serveur web embarqué.
+      - Gère les endpoints REST.
+    - Par défaut, l'application démarre sur `http://localhost:8080`.
+
+- **Désactivation ou personnalisation :**
+  - Si besoin, certaines configurations automatiques peuvent être désactivées avec `@EnableAutoConfiguration(exclude = ...)`.
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’apport de Spring Boot
+
+<div style="font-size:24px">
+
+### **Bénéfices concrets de Spring Boot**
+1. **Productivité accrue :**
+   - Réduction du temps de configuration.
+   - Prise en charge rapide de fonctionnalités complexes grâce aux starters.
+2. **Flexibilité :**
+   - Possibilité de personnaliser les configurations prédéfinies via des fichiers de propriétés ou des classes Java.
+3. **Cohérence :**
+   - Les starters garantissent des versions compatibles des bibliothèques utilisées.
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
+
+<div style="font-size:19px">
+
+### **1. Prérequis techniques**
+#### **a. Outils nécessaires**
+- **JDK (Java Development Kit) :**
+  - Version recommandée : **Java 17+** (compatibilité avec Spring Boot 3.x).
+  - Configuration de la variable `JAVA_HOME` :
+    ```bash
+    export JAVA_HOME=/path/to/jdk
+    export PATH=$JAVA_HOME/bin:$PATH
+    ```
+
+- **Maven ou Gradle :**
+  - Maven (gestionnaire de dépendances recommandé pour Spring) :
+    - Installer Maven : [Téléchargement Maven](https://maven.apache.org/download.cgi).
+    - Vérification de l’installation :
+      ```bash
+      mvn -v
+      ```
+  - Gradle : Option alternative, adaptée pour les projets modernes.
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
+
+<div style="font-size:22px">
+
+### **1. Prérequis techniques**
+- **IDE (Integrated Development Environment) :**
+  - **IntelliJ IDEA (recommandé)** :
+    - Support natif pour Spring et Spring Boot.
+    - Inclut des outils comme Spring Initializr pour la création rapide de projets.
+  - **Eclipse avec STS (Spring Tool Suite)** :
+    - Extension officielle de Spring pour Eclipse.
+  - VS Code avec les extensions **Spring Boot** et **Java**.
+
+#### **b. Serveur intégré**
+- Spring Boot inclut des serveurs web embarqués comme Tomcat, Jetty ou Undertow, éliminant la nécessité d’un serveur externe.
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
+
+<div style="font-size:21px">
+
+### **2. Création rapide d’un projet Spring**
+#### **a. Spring Initializr**
+- **Interface web :**
+  - Disponible sur [start.spring.io](https://start.spring.io).
+  - Permet de générer un projet Spring Boot avec les dépendances nécessaires.
+- **Dans l’IDE :**
+  - IntelliJ IDEA et STS permettent de générer un projet Spring directement depuis l’IDE.
+
+- **Paramètres courants à configurer :**
+  - **Group** : Identifiant du package principal (ex. `com.example`).
+  - **Artifact** : Nom du projet.
+  - **Dependencies** : Ajout des starters nécessaires (ex. `Spring Web`, `Spring Data JPA`).
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
 
 <div style="font-size:28px">
 
-Apache HTTPD 2.4 introduit le support natif du protocole **HTTP/2** via le module `mod_http2`. HTTP/2 est conçu pour améliorer les performances des sites web modernes.
+### **2. Création rapide d’un projet Spring**
+#### **b. Commande Maven**
+- Création d’un projet Maven depuis la ligne de commande :
+  ```bash
+  mvn archetype:generate -DgroupId=com.example -DartifactId=myapp \
+      -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+  ```
+  
+</div>
 
-#### **Avantages de HTTP/2 :**
-- **Multiplexage des requêtes** : Plusieurs requêtes/connexions parallèles via une seule connexion TCP.
-- **Compression des en-têtes** : Réduction de la taille des en-têtes HTTP grâce à HPACK.
-- **Priorisation des requêtes** : Optimisation de l'ordre d'exécution.
-- **Push serveur** : Envoi proactif de ressources avant la requête client.
+---
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
+
+<div style="font-size:26px">
+
+### **3. Organisation d’un projet Spring**
+#### **Structure typique d’un projet**
+```plaintext
+src/
+├── main/
+│   ├── java/                       # Code source Java
+│   │   └── com/example/myapp/
+│   │       ├── MyAppApplication.java
+│   │       ├── controller/
+│   │       ├── service/
+│   │       └── repository/
+│   └── resources/                  # Fichiers de configuration
+│       ├── application.properties
+│       └── static/                 # Contenu statique (HTML, CSS, JS)
+├── test/                           # Tests unitaires et d’intégration
+```
 
 </div>
 
 ---
 
-## Apache HTTPD 2.4 : rappels et nouveautés
-
-#### **Support du protocole HTTP/2**
+### Le conteneur Spring
 
 
-<div style="font-size:30px">
+#### L’environnement de développement de Spring
+
+<div style="font-size:29px">
+
+### **3. Organisation d’un projet Spring**
+#### **Points essentiels :**
+- **Fichiers de configuration** :
+  - `application.properties` ou `application.yml` pour gérer les paramètres de l’application.
+- **Architecture modulaire** :
+  - Diviser le code en couches (`Controller`, `Service`, `Repository`).
 
 
-#### **Activation de HTTP/2 :**
-1. **Vérifier les dépendances :**
-   - OpenSSL version 1.0.2 ou supérieure.
-   - Apache 2.4.x compilé avec `mod_http2`.
+</div>
 
-2. **Charger le module `mod_http2` :**
-   Ajouter dans le fichier de configuration :
-   ```conf
-   LoadModule http2_module modules/mod_http2.so
+---
+
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
+
+<div style="font-size:22px">
+
+### **4. Exécution et débogage**
+#### **a. Lancer l’application**
+- Depuis l’IDE :
+  - Lancer la classe principale annotée avec `@SpringBootApplication`.
+- Depuis la ligne de commande :
+  ```bash
+  mvn spring-boot:run
+  ```
+
+#### **b. Mode débogage**
+- Ajouter l’option `-Dspring-boot.run.jvmArguments` pour activer le mode débogage.
+  ```bash
+  mvn spring-boot:run -Dspring-boot.run.jvmArguments="-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"
+  ```
+- Configurer le débogage dans l’IDE pour se connecter sur le port 5005.
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+
+#### L’environnement de développement de Spring
+
+<div style="font-size:19px">
+
+### **5. Bonnes pratiques**
+1. **Utiliser des profils Spring (`@Profile`)** pour gérer les configurations par environnement (`dev`, `prod`).
+   ```properties
+   # application-dev.properties
+   server.port=8081
+
+   # application-prod.properties
+   server.port=80
+   ```
+
+2. **Documenter les API** :
+   - Intégrer Swagger avec le starter `springdoc-openapi-ui`.
+   - Accéder à la documentation via `/swagger-ui.html`.
+
+3. **Activer Spring Boot Actuator** pour surveiller les métriques et la santé de l’application.
+   ```xml
+   <dependency>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-starter-actuator</artifactId>
+   </dependency>
    ```
 
 </div>
 
 ---
 
-## Apache HTTPD 2.4 : rappels et nouveautés
+### Le conteneur Spring
 
-#### **Support du protocole HTTP/2**
 
+#### Les stratégies de déploiement Spring
+
+<br>
+
+<div style="font-size:38px">
+
+- Spring offre plusieurs options de déploiement en fonction des besoins du projet, des infrastructures, et des environnements.
+- Les principales stratégies : **JAR**, **image OCI (Open Container Initiative)**, et **application native**.
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:17px">
+
+### **1. Déploiement via JAR**
+
+#### **a. Description**
+- Le format **JAR (Java ARchive)** est la méthode classique pour empaqueter et exécuter des applications Java, incluant celles développées avec Spring Boot.
+- Les applications Spring Boot sont des JAR autonomes incluant toutes les dépendances nécessaires (serveur web embarqué, bibliothèques).
+
+#### **b. Création**
+- Construire le fichier JAR avec Maven ou Gradle :
+  - Maven :
+    ```bash
+    mvn clean package
+    ```
+    Le fichier JAR généré se trouve dans le dossier `target/`.
+
+  - Gradle :
+    ```bash
+    ./gradlew build
+    ```
+    Le fichier JAR généré se trouve dans le dossier `build/libs/`.
+</div>
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:21px">
+
+### **1. Déploiement via JAR**
+
+#### **c. Exécution**
+
+- Exemple d'un fichier JAR :  
+  `myapp-1.0.0.jar`
+
+- Lancer l'application JAR avec la commande suivante :
+  ```bash
+  java -jar myapp-1.0.0.jar
+  ```
+
+#### **d. Avantages**
+- **Portabilité** : Exécutable sur toute machine avec un JDK compatible.
+- **Facilité de création** : Intégré dans le cycle de build Maven ou Gradle.
+- **Adapté pour les environnements traditionnels** : Convient pour les serveurs sur site ou les machines virtuelles.
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:18px">
+
+### **2. Déploiement via image OCI**
+
+#### **a. Description**
+- Les **images OCI (Open Container Initiative)** sont des conteneurs standardisés, compatibles avec des outils comme Docker, Kubernetes, et les registres d'images.
+- Spring Boot peut être directement conteneurisé grâce à des outils comme **Spring Boot Buildpacks**.
+
+#### **b. Création**
+- Utiliser les **Buildpacks** intégrés dans Spring Boot :
+  - Avec Maven :
+    ```bash
+    mvn spring-boot:build-image
+    ```
+  - Avec Gradle :
+    ```bash
+    ./gradlew bootBuildImage
+    ```
+
+- Résultat : Une image conteneur publiée dans un registre local ou distant.
+  - Exemple : `docker.io/library/myapp:1.0.0`
+
+</div>
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:29px">
+
+### **2. Déploiement via image OCI**
+
+#### **c. Exécution**
+- Lancer le conteneur avec Docker :
+  ```bash
+  docker run -p 8080:8080 myapp:1.0.0
+  ```
+</div>
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:17px">
+
+### **2. Déploiement via image OCI**
+#### **d. Intégration avec Kubernetes**
+- Déployer l'image sur un cluster Kubernetes en utilisant un fichier YAML :
+  ```yaml
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: myapp
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        app: myapp
+    template:
+      metadata:
+        labels:
+          app: myapp
+      spec:
+        containers:
+        - name: myapp
+          image: myapp:1.0.0
+          ports:
+          - containerPort: 8080
+  ```
+</div>
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:28px">
+
+### **2. Déploiement via image OCI**
+#### **e. Avantages**
+- **Isolation** : Exécutable dans un environnement conteneurisé, isolé des dépendances système.
+- **Portabilité avancée** : Compatible avec les environnements cloud et Kubernetes.
+- **Prêt pour CI/CD** : Facile à intégrer dans des pipelines DevOps.
+</div>
+
+---
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:30px">
+
+### **3. Déploiement d'une application native**
+
+#### **a. Description**
+- Une **application native** est compilée directement en binaire natif pour le système cible, sans nécessiter de JVM.
+- Utilisation de **GraalVM** pour convertir une application Spring Boot en exécutable natif.
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:18px">
+
+### **3. Déploiement d'une application native**
+#### **b. Création**
+1. **Configurer GraalVM** :
+   - Installer GraalVM (avec Native Image).
+   - Ajouter le plugin GraalVM à votre projet Maven ou Gradle :
+     - Maven :
+       ```xml
+       <plugin>
+           <groupId>org.graalvm.buildtools</groupId>
+           <artifactId>native-maven-plugin</artifactId>
+           <version>0.9.22</version>
+           <executions>
+               <execution>
+                   <goals>
+                       <goal>native-image</goal>
+                   </goals>
+               </execution>
+           </executions>
+       </plugin>
+        ```
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:22px">
+
+### **3. Déploiement d'une application native**
+#### **b. Création**
+2. **Construire l’exécutable natif** :
+   - Maven :
+     ```bash
+     mvn -Pnative clean package
+     ```
+   - Gradle :
+     ```bash
+     ./gradlew nativeCompile
+     ```
+
+3. **Fichier généré** :
+   - Un fichier exécutable binaire sera généré, par exemple :
+     ```plaintext
+     target/myapp
+     ```
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:24px">
+
+### **3. Déploiement d'une application native**
+#### **c. Exécution**
+- Lancer directement l’application native :
+  ```bash
+  ./myapp
+  ```
+
+#### **d. Avantages**
+- **Performances élevées** : Temps de démarrage et consommation mémoire réduits.
+- **Idéal pour les microservices** : Convient aux environnements serverless et aux architectures nécessitant une faible empreinte.
+- **Exécution sans JVM** : Plus adapté aux environnements limités comme les conteneurs légers.
+
+---
+
+### Le conteneur Spring
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:24px">
+
+### **Comparaison des stratégies**
+
+| **Stratégie**       | **Avantages**                                   | **Inconvénients**                            |
+|---------------------|------------------------------------------------|---------------------------------------------|
+| **JAR**             | Simple, compatible avec la JVM, portable       | Dépendance à la JVM                         |
+| **Image OCI**       | Isolée, portable, adaptée au cloud et CI/CD     | Plus complexe à mettre en œuvre             |
+| **Application native** | Performances élevées, faible empreinte mémoire | Temps de build plus long, complexité accrue |
+
+---
+
+<!-- _class: lead -->
+<!-- _paginate: false -->
+
+## Gestion des beans avec Spring Core et Spring Boot
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Le découpage en couches et l'approche POJO
+
+<div style="font-size:29px">
+
+#### **a. Découpage en couches dans Spring**
+<br>
+
+Spring encourage une architecture modulaire en séparant les responsabilités en plusieurs couches, ce qui facilite la maintenabilité, l'évolution et les tests de l'application.
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:16px">
+
+#### **a. Découpage en couches dans Spring**
+- **Couches typiques :**
+  1. **Controller** (Interface utilisateur) :
+     - Gère les requêtes HTTP et les réponses.
+     - Utilise les services pour appliquer la logique métier.
+     - Exemple :
+       ```java
+       @RestController
+       @RequestMapping("/products")
+       public class ProductController {
+           private final ProductService productService;
+
+           public ProductController(ProductService productService) {
+               this.productService = productService;
+           }
+
+           @GetMapping
+           public List<Product> getAllProducts() {
+               return productService.findAll();
+           }
+       }
+       ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+####  Le découpage en couches et l'approche POJO
+
+<div style="font-size:18px">
+
+#### **a. Découpage en couches dans Spring**
+- **Couches typiques :**
+   2. **Service** (Logique métier) :
+     - Implémente les règles de gestion et orchestre les appels aux couches inférieures.
+     - Exemple :
+       ```java
+       @Service
+       public class ProductService {
+           private final ProductRepository productRepository;
+
+           public ProductService(ProductRepository productRepository) {
+               this.productRepository = productRepository;
+           }
+
+           public List<Product> findAll() {
+               return productRepository.findAll();
+           }
+       }
+      
+       ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+####  Le découpage en couches et l'approche POJO
+
+<div style="font-size:29px">
+
+#### **a. Découpage en couches dans Spring**
+- **Couches typiques :**
+  3. **Repository** (Accès aux données) :
+     - Gère les interactions avec la base de données via Spring Data ou JDBC.
+     - Exemple avec JPA :
+       ```java
+       @Repository
+       public interface ProductRepository extends JpaRepository<Product, Long> {}
+       ```
+
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+####  Le découpage en couches et l'approche POJO
+
+<div style="font-size:16px">
+
+#### **b. L'approche POJO (Plain Old Java Object)**
+- **Concept :**
+  - Les objets gérés par Spring sont des POJOs, c'est-à-dire de simples classes Java sans dépendances à un framework.
+  - Cela garantit une faible intrusivité et facilite les tests unitaires.
+- **Exemple de POJO :**
+  ```java
+  public class Product {
+      private Long id;
+      private String name;
+
+      // Getters et setters
+      public Long getId() {
+          return id;
+      }
+
+      public void setId(Long id) {
+          this.id = id;
+      }
+    // suite
+
+  }
+  ```
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Le découpage en couches et l'approche POJO
 
 <div style="font-size:23px">
 
+#### **b. L'approche POJO (Plain Old Java Object)**
+- **Injection de dépendances avec POJOs :**
+  - Spring injecte automatiquement les dépendances via le constructeur, les setters, ou directement dans les champs.
+  - Exemple :
+    ```java
+    @Service
+    public class ProductService {
+        private final ProductRepository productRepository;
 
-#### **Activation de HTTP/2 :**
-3. **Activer HTTP/2 dans un VirtualHost :**
-   Exemple pour un site HTTPS :
-   ```conf
-   <VirtualHost *:443>
-       Protocols h2 http/1.1
-       SSLEngine on
-       SSLCertificateFile /path/to/certificate.crt
-       SSLCertificateKeyFile /path/to/private.key
-       DocumentRoot "/var/www/example"
-   </VirtualHost>
+        public ProductService(ProductRepository productRepository) {
+            this.productRepository = productRepository;
+        }
+    }
+    ```
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+####  La gestion de l’état
+
+<div style="font-size:24px">
+
+#### **a. Scopes des Beans**
+Spring permet de configurer la portée (scope) des Beans pour gérer leur état.
+
+- **Scopes courants :**
+  - `singleton` (par défaut) :
+    - Une seule instance du Bean est créée et partagée dans le conteneur.
+    - **Usage :** Composants stateless, comme les services.
+    - Exemple :
+      ```java
+      @Service
+      @Scope("singleton")
+      public class SingletonService { }
+      ```
+
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### La gestion de l’état
+
+<div style="font-size:24px">
+
+#### **a. Scopes des Beans**
+Spring permet de configurer la portée (scope) des Beans pour gérer leur état.
+
+- **Scopes courants :**
+  - `prototype` :
+    - Une nouvelle instance est créée à chaque demande.
+    - **Usage :** Composants avec état mutable ou temporaires.
+    - Exemple :
+      ```java
+      @Service
+      @Scope("prototype")
+      public class PrototypeService { }
+      ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### La gestion de l’état
+
+<div style="font-size:24px">
+
+#### **a. Scopes des Beans**
+Spring permet de configurer la portée (scope) des Beans pour gérer leur état.
+
+- **Scopes courants :**
+  - Scopes spécifiques aux applications web :
+    - `request` : Une instance par requête HTTP.
+    - `session` : Une instance par session utilisateur.
+    - Exemple :
+      ```java
+      @Component
+      @Scope("request")
+      public class RequestScopedBean { }
+      ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### La gestion de l’état
+
+<div style="font-size:22px">
+
+#### **b. Gestion explicite de l’état**
+- Les Beans Spring sont par défaut stateless (sans état), mais peuvent conserver un état si nécessaire.
+- **Exemple d’un service avec état :**
+  - Ajout d’un compteur d’exécution dans un Bean prototype :
+    ```java
+    @Service
+    @Scope("prototype")
+    public class StatefulService {
+        private int counter = 0;
+
+        public int incrementCounter() {
+            return ++counter;
+        }
+    }
+    ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### La gestion de l’état
+
+<div style="font-size:21px">
+
+#### **b. Gestion explicite de l’état**
+- **Injection d’un Bean prototype dans un Bean singleton :**
+  - Utilisation de `ObjectFactory` ou de `Provider` pour créer une nouvelle instance sur demande.
+    ```java
+    @Service
+    public class SingletonService {
+        private final ObjectFactory<PrototypeService> prototypeFactory;
+
+        public SingletonService(ObjectFactory<PrototypeService> prototypeFactory) {
+            this.prototypeFactory = prototypeFactory;
+        }
+
+        public void usePrototype() {
+            PrototypeService prototypeService = prototypeFactory.getObject();
+            System.out.println(prototypeService.incrementCounter());
+        }
+    }
+    ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### La gestion de l’état
+
+<div style="font-size:18px">
+
+#### **c. Gestion de l’état dans les applications web**
+- Les états peuvent être gérés au niveau de la session ou de la requête via des annotations spécifiques :
+  - **SessionScoped** :
+    - Permet de conserver un état spécifique à un utilisateur sur plusieurs requêtes.
+    - Exemple :
+      ```java
+      @Component
+      @Scope("session")
+      public class UserSession {
+          private String username;
+
+          public String getUsername() {
+              return username;
+          }
+
+          public void setUsername(String username) {
+              this.username = username;
+          }
+      }
+      ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### La gestion de l’état
+
+<div style="font-size:17px">
+
+#### **c. Gestion de l’état dans les applications web**
+- Les états peuvent être gérés au niveau de la session ou de la requête via des annotations spécifiques :
+  - **SessionScoped** :
+    - Permet de conserver un état spécifique à un utilisateur sur plusieurs requêtes.
+    - L’état est conservé uniquement pendant la durée d’une requête HTTP.
+    - Exemple :
+      ```java
+      @Component
+      @Scope("session")
+      public class UserSession {
+          private String username;
+
+          public String getUsername() {
+              return username;
+          }
+
+          public void setUsername(String username) {
+              this.username = username;
+          }
+      }
+      ```
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Les stratégies de déploiement Spring
+
+<div style="font-size:17px">
+
+| **Scope**      | **Durée de vie**                               | **Utilisation courante**                                      |
+|-----------------|-----------------------------------------------|-------------------------------------------------------------|
+| **Singleton**  | Durée de vie de l'application.                | Services, composants utilitaires.                          |
+| **Prototype**  | Nouvelle instance à chaque injection.         | Objets à état mutable ou à courte durée de vie.             |
+| **Request**    | Une instance par requête HTTP.                | Données spécifiques à une requête (applications web).       |
+| **Session**    | Une instance par session HTTP.                | Données utilisateur par session (panier, préférences).      |
+| **Application**| Une instance pour toute l'application.        | Données globales ou caches partagés.                       |
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### L'injection de dépendances.
+
+<div style="font-size:21px">
+
+#### **a. Définition**
+- L’injection de dépendances (Dependency Injection ou DI) est une technique où le conteneur Spring gère l’instanciation des objets et leur injection dans d’autres objets.
+
+#### **b. Types d’injection**
+1. **Par constructeur** (recommandé) :
+   - Injection via le constructeur, assurant que toutes les dépendances nécessaires sont disponibles au moment de la création.
+   ```java
+   @Component
+   public class ProductService {
+       private final ProductRepository repository;
+
+       public ProductService(ProductRepository repository) {
+           this.repository = repository;
+       }
+   }
    ```
+---
 
-4. **Redémarrer Apache :**
-   ```bash
-   apachectl restart
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### L'injection de dépendances.
+
+<div style="font-size:24px">
+
+
+#### **b. Types d’injection**
+2. **Par setter** :
+   - Injection des dépendances après la création de l'objet.
+   ```java
+   @Component
+   public class ProductService {
+       private ProductRepository repository;
+
+       @Autowired
+       public void setRepository(ProductRepository repository) {
+           this.repository = repository;
+       }
+   }
+   
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### L'injection de dépendances.
+
+<div style="font-size:27px">
+
+
+#### **b. Types d’injection**
+3. **Par champ (field)** :
+   - Simplifie l'injection directe sur le champ, mais réduit la testabilité.
+   ```java
+   @Component
+   public class ProductService {
+       @Autowired
+       private ProductRepository repository;
+   }
    ```
 
 </div>
 
 ---
 
-## Apache HTTPD 2.4 : rappels et nouveautés
+### Gestion des beans avec Spring Core et Spring Boot
 
-#### **Support du protocole HTTP/2**
+#### Les intercepteurs et la programmation orientée aspect (AOP)
 
+<div style="font-size:29px">
+
+#### **a. Intercepteurs**
+- Les intercepteurs interceptent les requêtes HTTP ou les appels spécifiques.
+- Exemple avec un intercepteur pour ajouter un en-tête :
+  ```java
+  public class CustomInterceptor implements HandlerInterceptor {
+      @Override
+      public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+          response.addHeader("X-Custom-Header", "Interceptor");
+          return true;
+      }
+  }
+</div>
+
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Les intercepteurs et la programmation orientée aspect (AOP)
+
+<div style="font-size:20px">
+
+#### **b. Programmation orientée aspect (AOP)**
+- L'AOP permet d'injecter des comportements transversaux (logging, sécurité, transactions) dans les Beans.
+
+- **Terminologie AOP :**
+  - **Aspect** : Le comportement transversal.
+  - **Advice** : Le code à exécuter.
+  - **Pointcut** : Où l'advice doit s'appliquer.
+
+- **Exemple : Log avant chaque méthode d’un service**
+  ```java
+  @Aspect
+  @Component
+  public class LoggingAspect {
+      @Before("execution(* com.example.service.*.*(..))")
+      public void logBefore(JoinPoint joinPoint) {
+          System.out.println("Calling method: " + joinPoint.getSignature().getName());
+      }
+  }
+  ```
+</div>
+
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Le cache et la supervision avec JMX
+
+<div style="font-size:28px">
+
+#### **a. Gestion du cache**
+- Spring fournit un support natif pour la mise en cache avec l'annotation `@Cacheable`.
+
+- **Exemple : Mise en cache des produits**
+  ```java
+  @Service
+  public class ProductService {
+      @Cacheable("products")
+      public Product findProductById(Long id) {
+          return productRepository.findById(id).orElseThrow();
+      }
+  }
+  ```
+
+</div>
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Le cache et la supervision avec JMX
+
+<div style="font-size:28px">
+
+#### **b. Supervision avec JMX**
+- Java Management Extensions (JMX) permet de surveiller et de gérer les Beans en temps réel.
+
+- **Exemple : Exposer un MBean**
+  ```java
+  @ManagedResource(objectName = "com.example:name=ProductService")
+  @Service
+  public class ProductService {
+      @ManagedOperation
+      public int getProductCount() {
+          return productRepository.count();
+      }
+  }
+  ```
+
+</div>
+
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Les invocations planifiées
+
+<div style="font-size:21px">
+
+#### **a. Planification avec `@Scheduled`**
+- Spring permet de planifier l’exécution de tâches périodiques ou à des moments précis.
+
+- **Exemple : Exécution périodique**
+  ```java
+  @Service
+  public class ScheduledTask {
+      @Scheduled(fixedRate = 5000)
+      public void reportCurrentTime() {
+          System.out.println("Current time: " + System.currentTimeMillis());
+      }
+  }
+  ```
+
+- **Expressions CRON** :
+  ```java
+  @Scheduled(cron = "0 0 12 * * ?")
+  public void dailyTask() {
+      System.out.println("Task executed at noon every day.");
+  }
+  ```
+
+</div>
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Les invocations planifiées
 
 <div style="font-size:30px">
 
+<br>
 
-#### **Activation de HTTP/2 :**
-
-5. **Vérifier le support de HTTP/2 :**
-   - Utilisez un outil comme [curl](https://curl.se/) :
-     ```bash
-     curl -I --http2 https://example.com
-     ```
-   - Vérifiez les en-têtes pour `HTTP/2`.
+#### **b. Activer la planification**
+- Ajouter l’annotation `@EnableScheduling` dans une classe de configuration :
+  ```java
+  @Configuration
+  @EnableScheduling
+  public class SchedulingConfig {}
+  ```
 
 </div>
 
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Les profils
+
+<div style="font-size:22px">
+
+#### **a. Définition**
+- Les **profils Spring** permettent de configurer des Beans ou des paramètres spécifiques à un environnement (développement, test, production).
+
+#### **b. Définir un profil**
+1. **Déclaration dans le code** :
+   - Annoter les Beans ou configurations spécifiques avec `@Profile`.
+   ```java
+   @Configuration
+   @Profile("dev")
+   public class DevConfig {
+       @Bean
+       public DataSource devDataSource() {
+           return new H2DataSource();
+       }
+   }
+   ```
+
+</div>
 
 ---
 
-## Apache HTTPD 2.4 : rappels et nouveautés
+### Gestion des beans avec Spring Core et Spring Boot
 
-<br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
+#### Les profils
 
+<div style="font-size:27px">
+
+#### **b. Définir un profil**
+
+2. **Activer un profil** :
+   - Via les propriétés :
+     ```properties
+     spring.profiles.active=dev
+     ```
+   - Via la ligne de commande :
+     ```bash
+     java -Dspring.profiles.active=prod -jar myapp.jar
+     ```
+
+</div>
+
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Tests des Beans Spring
+
+<div style="font-size:19px">
+
+#### **a. Tests unitaires avec Mockito**
+- Tester des Beans isolés avec des dépendances simulées.
+- **Exemple : Tester un service avec des mocks**
+  ```java
+  @ExtendWith(MockitoExtension.class)
+  public class ProductServiceTest {
+      @Mock
+      private ProductRepository productRepository;
+
+      @InjectMocks
+      private ProductService productService;
+
+      @Test
+      void testFindProductById() {
+          Product product = new Product(1L, "Laptop");
+          when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+
+          Product result = productService.findProductById(1L);
+          assertEquals("Laptop", result.getName());
+      }
+  }
+  ```
+</div>
+
+---
+
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Tests des Beans Spring
+
+<div style="font-size:27px">
+
+#### **b. Tests d’intégration avec Spring Boot**
+- Charger le contexte Spring avec `@SpringBootTest`.
+- **Exemple : Vérifier le démarrage du contexte**
+  ```java
+  @SpringBootTest
+  public class ApplicationTests {
+      @Test
+      void contextLoads() {
+          // Vérifie que le contexte démarre sans erreur
+      }
+  }
+  ```
+</div>
+
+---
+### Gestion des beans avec Spring Core et Spring Boot
+
+#### Tests des Beans Spring
+
+<div style="font-size:30px">
+
+#### **c. Tests avec des profils spécifiques**
+- Charger un profil particulier pour les tests.
+  ```java
+  @ActiveProfiles("test")
+  @SpringBootTest
+  public class ProductServiceTest {
+      // Tests utilisant la configuration du profil "test"
+  }
+  ```
+
+</div>
 
 ---
 
 <!-- _class: lead -->
 <!-- _paginate: false -->
 
-## Héberger des applications PHP
+## API REST avec Spring MVC et Spring WebFlux
 
 ---
 
-## Héberger des applications PHP
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
 
 <br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
 
+<div style="font-size:40px">
+
+Concevoir une **API REST** avec **Spring Boot** implique de suivre des bonnes pratiques pour garantir une API robuste, performante, maintenable et sécurisée. 
+</div>
+
+---
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:25px">
+
+## **1. Structure et organisation du projet**
+- **Architecture en couches :**
+  - **Controller** : Gère les requêtes HTTP et les réponses.
+  - **Service** : Contient la logique métier.
+  - **Repository** : Interagit avec la base de données.
+  - **Model** : Définit les entités ou les DTOs.
+  
+- **Utilisation des DTOs (Data Transfer Objects) :**
+  - Séparez les modèles de la base de données des données exposées via l'API.
+  - Facilite l'évolution de l'API sans impacter la base de données.
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:25px">
+
+## **2. Conventions d'URL**
+- **Respect des normes REST :**
+  - Utilisez des noms de ressources au pluriel : `/users`, `/products`.
+  - Structure hiérarchique : `/users/{userId}/orders/{orderId}`.
+  - Évitez les verbes dans les URLs : utilisez des méthodes HTTP (GET, POST, PUT, DELETE).
+
+- **Pagination et tri :**
+  - Implémentez la pagination avec des paramètres de requête :  
+    `GET /users?page=2&size=10&sort=name,asc`.
+  - Fournissez des métadonnées comme `totalPages` et `totalElements`.
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<br>
+
+<div style="font-size:25px">
+
+## **3. Utilisation appropriée des méthodes HTTP**
+- **GET** : Récupérer des ressources.
+- **POST** : Créer une ressource.
+- **PUT** : Modifier une ressource existante.
+- **DELETE** : Supprimer une ressource.
+- **PATCH** : Mettre à jour partiellement une ressource.
+
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+
+<div style="font-size:24px">
+
+## **4. Gestion des réponses**
+- **Codes HTTP :**
+  - 200 : Succès (GET).
+  - 201 : Ressource créée (POST).
+  - 204 : Pas de contenu (DELETE).
+  - 400 : Requête invalide.
+  - 401 : Non autorisé.
+  - 403 : Interdit.
+  - 404 : Ressource non trouvée.
+  - 500 : Erreur serveur.
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:27px">
+
+## **4. Gestion des réponses**
+
+- **Body de réponse :**
+  - Fournissez des informations claires sur le statut de l'opération.
+  - Exemple de structure JSON :
+    ```json
+    {
+      "timestamp": "2024-11-23T12:00:00Z",
+      "status": 404,
+      "error": "Not Found",
+      "message": "User not found",
+      "path": "/users/1"
+    }
+    ```
+
+</div>
+
+---
+
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:20px">
+
+## **5. Validation des entrées**
+- Utilisez les annotations de validation :
+  ```java
+  @NotNull
+  @Size(min = 3, max = 50)
+  @Email
+  ```
+- Gérez les erreurs avec un **ControllerAdvice** :
+  ```java
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+      @ExceptionHandler(MethodArgumentNotValidException.class)
+      public ResponseEntity<?> handleValidationExceptions(MethodArgumentNotValidException ex) {
+          Map<String, String> errors = new HashMap<>();
+          ex.getBindingResult().getFieldErrors().forEach(error -> 
+              errors.put(error.getField(), error.getDefaultMessage()));
+          return ResponseEntity.badRequest().body(errors);
+      }
+  }
+  ``
+</div>
+
+---
+
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:30px">
+
+## **6. Sécurisation de l'API**
+- **Authentification et autorisation :**
+  - Implémentez OAuth2 ou JWT.
+  - Protégez les endpoints sensibles avec Spring Security :
+    ```java
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteUser(@PathVariable Long id) { ... }
+    ```
+
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:21px">
+
+## **6. Sécurisation de l'API**
+
+- **Protection des données :**
+  - Masquez les informations sensibles.
+  - Désactivez l'accès direct aux endpoints internes.
+
+- **CORS (Cross-Origin Resource Sharing) :**
+  - Configurez les règles CORS pour restreindre les origines autorisées :
+    ```java
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("https://trusted-domain.com");
+        configuration.addAllowedMethod("*");
+        configuration.addAllowedHeader("*");
+        return new UrlBasedCorsConfigurationSource();
+    }
+    ```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:30px">
+
+## **7. Documentation de l'API**
+- Intégrez **Swagger** pour la documentation :
+  - Ajoutez la dépendance Maven :
+    ```xml
+    <dependency>
+        <groupId>org.springdoc</groupId>
+        <artifactId>springdoc-openapi-ui</artifactId>
+        <version>1.6.15</version>
+    </dependency>
+    ```
+  - Accédez à la documentation interactive : `/swagger-ui.html`.
+
+</div>
+
+---
+
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:32px">
+
+## **8. Gestion des erreurs**
+- Gérez les exceptions globalement :
+  ```java
+  @RestControllerAdvice
+  public class GlobalExceptionHandler {
+      @ExceptionHandler(ResourceNotFoundException.class)
+      public ResponseEntity<?> handleResourceNotFound(ResourceNotFoundException ex) {
+          return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("error", ex.getMessage()));
+      }
+  }
+  ```
+</div>
+
+---
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:28px">
+
+## **9. Performance**
+- Activez la **mise en cache** pour les requêtes fréquentes :
+  ```java
+  @Cacheable("users")
+  public User getUserById(Long id) { ... }
+  ```
+
+- Activez **gzip compression** dans `application.properties` :
+  ```properties
+  server.compression.enabled=true
+  server.compression.mime-types=application/json,application/xml,text/html,text/xml,text/plain
+  ```
+
+- Implémentez des mécanismes de **limitation de taux** pour prévenir les abus.
+
+</div>
+
+---
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Bonnes pratiques de conception d'une API REST.
+
+<div style="font-size:30px">
+
+## **10. Monitoring et logs**
+
+- Configurez **Spring Actuator** pour surveiller l'état de l'application :
+  ```properties
+  management.endpoints.web.exposure.include=health,info,metrics
+  ```
+- Utilisez **Logback** ou **SLF4J** pour une journalisation efficace.
+- Intégrez des outils comme **Prometheus** et **Grafana** pour le suivi des performances.
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:25px">
+
+## **Structure générale d'un Controller**
+Un controller Spring Boot se base sur l’annotation `@RestController` pour répondre aux requêtes HTTP. Voici une structure de base :
+
+```java
+@RestController
+@RequestMapping("/api/v1/resource") // Point de terminaison racine
+public class ResourceController {
+
+    // Exemple de méthode GET
+    @GetMapping
+    public String getResource() {
+        return "Resource fetched";
+    }
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:25px">
+
+### **1. Gérer les méthodes HTTP**
+Voici les annotations principales pour gérer les différentes méthodes HTTP :
+
+- **GET** : Récupération d'informations.
+  ```java
+  @GetMapping("/{id}")
+  public String getById(@PathVariable String id) {
+      return "Fetching resource with ID: " + id;
+  }
+  ```
+
+- **POST** : Création d’une ressource.
+  ```java
+  @PostMapping
+  public String create(@RequestBody Map<String, String> payload) {
+      return "Resource created with name: " + payload.get("name");
+  }
+  ```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:17px">
+
+### **1. Gérer les méthodes HTTP**
+Voici les annotations principales pour gérer les différentes méthodes HTTP :
+
+- **PUT** : Mise à jour complète d’une ressource.
+  ```java
+  @PutMapping("/{id}")
+  public String update(@PathVariable String id, @RequestBody Map<String, String> payload) {
+      return "Resource with ID: " + id + " updated to name: " + payload.get("name");
+  }
+  ```
+
+- **PATCH** : Mise à jour partielle.
+  ```java
+  @PatchMapping("/{id}")
+  public String partialUpdate(@PathVariable String id, @RequestBody Map<String, String> payload) {
+      return "Resource with ID: " + id + " partially updated";
+  }
+  ```
+
+- **DELETE** : Suppression d’une ressource.
+  ```java
+  @DeleteMapping("/{id}")
+  public String delete(@PathVariable String id) {
+      return "Resource with ID: " + id + " deleted";
+  }
+  ```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:19px">
+
+### **2. Paramètres dans les requêtes**
+
+- **Paramètres d'URL (`@PathVariable`)** :
+  ```java
+  @GetMapping("/{id}")
+  public String getById(@PathVariable("id") String resourceId) {
+      return "Fetching resource with ID: " + resourceId;
+  }
+  ```
+
+- **Paramètres de requête (`@RequestParam`)** :
+  ```java
+  @GetMapping
+  public String filter(@RequestParam String name, @RequestParam(required = false) Integer age) {
+      return "Filtering resources by name: " + name + " and age: " + age;
+  }
+  ```
+
+- **Combinaison (`@PathVariable` + `@RequestParam`)** :
+  ```java
+  @GetMapping("/{category}")
+  public String filterByCategory(@PathVariable String category, @RequestParam(required = false) String name) {
+      return "Category: " + category + ", Filter by name: " + name;
+  }
+  ```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:20px">
+
+### **3. Gérer les données avec `@RequestBody`**
+
+Recevoir et traiter des données JSON envoyées dans le corps d’une requête :
+
+```java
+@PostMapping
+public String create(@RequestBody Map<String, String> payload) {
+    return "Created resource with data: " + payload;
+}
+```
+
+Avec une classe DTO (Data Transfer Object) :
+```java
+public class ResourceDTO {
+    private String name;
+    private int age;
+
+    // Getters and setters
+}
+
+@PostMapping
+public String create(@RequestBody ResourceDTO resource) {
+    return "Created resource with name: " + resource.getName();
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:23px">
+
+### **4. Gérer les en-têtes HTTP**
+
+- **Lire les en-têtes de requête (`@RequestHeader`)** :
+  ```java
+  @GetMapping
+  public String getHeader(@RequestHeader("Authorization") String authHeader) {
+      return "Authorization header: " + authHeader;
+  }
+  ```
+
+- **Ajouter des en-têtes dans la réponse (`HttpHeaders`)** :
+  ```java
+  @GetMapping
+  public ResponseEntity<String> addCustomHeader() {
+      HttpHeaders headers = new HttpHeaders();
+      headers.add("Custom-Header", "CustomValue");
+      return ResponseEntity.ok().headers(headers).body("Response with custom header");
+  }
+  ```
+
+</div>
+
+---
+
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:18px">
+
+### **5. Retourner différents formats de réponse**
+
+- **Retourner des données au format JSON** :
+  ```java
+  @GetMapping("/json")
+  public Map<String, Object> getJson() {
+      Map<String, Object> response = new HashMap<>();
+      response.put("name", "John");
+      response.put("age", 30);
+      return response;
+  }
+  ```
+
+- **Gérer XML en plus du JSON** (Ajouter la dépendance `jackson-dataformat-xml`) :
+  ```xml
+  <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+  </dependency>
+  ```
+  ```java
+  @GetMapping(value = "/xml", produces = MediaType.APPLICATION_XML_VALUE)
+  public ResourceDTO getXml() {
+      return new ResourceDTO("John", 30);
+  }
+  ```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:28px">
+
+### **7. Pagination et tri**
+
+Gérer la pagination avec des paramètres de requête :
+
+```java
+@GetMapping
+public String getPaginated(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "10") int size,
+        @RequestParam(defaultValue = "name,asc") String sort) {
+    return "Page: " + page + ", Size: " + size + ", Sort: " + sort;
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:22px">
+
+### **8. Réponses avec `ResponseEntity`**
+
+- Retourner des statuts HTTP personnalisés :
+  ```java
+  @PostMapping
+  public ResponseEntity<String> create() {
+      return ResponseEntity.status(HttpStatus.CREATED).body("Resource created");
+  }
+  ```
+
+- Gérer les erreurs spécifiques :
+  ```java
+  @GetMapping("/{id}")
+  public ResponseEntity<String> getById(@PathVariable String id) {
+      if ("404".equals(id)) {
+          return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not found");
+      }
+      return ResponseEntity.ok("Found resource");
+  }
+  ```
+
+</div>
+
+---
+### API REST avec Spring MVC et Spring WebFlux
+
+#### Mise en place de l'API REST (partiel).
+
+<div style="font-size:20px">
+
+### **10. Documentation avec Swagger**
+
+1. Ajouter la dépendance :
+   ```xml
+   <dependency>
+       <groupId>org.springdoc</groupId>
+       <artifactId>springdoc-openapi-ui</artifactId>
+       <version>1.6.15</version>
+   </dependency>
+   ```
+
+2. Annoter les méthodes pour la documentation :
+   ```java
+   @Operation(summary = "Fetch a resource by ID")
+   @GetMapping("/{id}")
+   public String getById(@PathVariable String id) {
+       return "Resource with ID: " + id;
+   }
+   ```
+
+3. Accéder à Swagger UI :
+   - Lancer l'application et accéder à `http://localhost:8080/swagger-ui.html`.
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:30px">
+
+<br>
+
+## **Prérequis**
+
+Ajoutez la dépendance pour Jakarta Validation si elle n'est pas déjà incluse :
+
+```xml
+<dependency>
+    <groupId>jakarta.validation</groupId>
+    <artifactId>jakarta.validation-api</artifactId>
+</dependency>
+```
+
+</div>
+
+---
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:16px">
+
+## **1. Exemple d'une classe DTO avec Jakarta Validation**
+
+Les DTO (Data Transfer Objects) contiennent les données transmises dans les requêtes. Vous pouvez annoter les champs pour valider automatiquement les entrées.
+
+### Exemple de classe DTO : 
+```java
+import jakarta.validation.constraints.*;
+
+public class UserDTO {
+
+    @NotNull(message = "ID must not be null") // Ne doit pas être null
+    private Long id;
+
+    @NotBlank(message = "Name is required") // Ne doit pas être vide ou uniquement des espaces
+    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
+    private String name;
+
+    @Email(message = "Email must be valid") // Vérifie le format email
+    private String email;
+
+    @Min(value = 18, message = "Age must be at least 18") // Limite minimale
+    @Max(value = 100, message = "Age must not exceed 100") // Limite maximale
+    private Integer age;
+    // Getters et setters
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:14px">
+
+## **2. Validation dans un Controller**
+
+Ajoutez l'annotation `@Validated` pour activer la validation au niveau du controller. Utilisez `@Valid` pour valider les objets de type DTO passés dans les requêtes.
+
+### Exemple d’un Controller avec validation :
+
+```java
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+@RestController
+@RequestMapping("/api/v1/users")
+@Validated // Permet la validation des méthodes du Controller
+public class UserController {
+    @PostMapping
+    public ResponseEntity<String> createUser(@Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok("User created with name: " + userDTO.getName());
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<String> updateUser(
+            @PathVariable Long id,
+            @Valid @RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok("User updated with ID: " + id);
+    }
+    @GetMapping
+    public ResponseEntity<String> getUsers(@RequestParam @Size(max = 10, message = "Limit cannot exceed 10") Integer limit) {
+        return ResponseEntity.ok("Fetching " + limit + " users.");
+    }
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:25px">
+
+## **3. Validation avancée**
+
+### a. **Combinaison d’annotations**
+
+Vous pouvez combiner plusieurs annotations sur un même champ.
+
+```java
+@Pattern(regexp = "^[A-Za-z]*$", message = "Name must only contain letters")
+@NotBlank(message = "Name is required")
+private String name;
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:18px">
+
+## **3. Validation avancée**
+
+### b. **Validation conditionnelle avec des groupes**
+
+Créez des groupes pour appliquer différentes règles de validation selon le contexte.
+
+```java
+import jakarta.validation.groups.Default;
+
+public class UserDTO {
+
+    public interface CreateGroup {}
+    public interface UpdateGroup {}
+
+    @NotNull(groups = UpdateGroup.class, message = "ID is required for update")
+    private Long id;
+
+    @NotBlank(message = "Name is required")
+    private String name;
+
+    @Email(message = "Email must be valid")
+    private String email;
+    // Getters et setters
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:27px">
+
+## **3. Validation avancée**
+
+### b. **Validation conditionnelle avec des groupes**
+
+Utilisation dans le Controller :
+```java
+@PostMapping
+public ResponseEntity<String> createUser(@Validated(UserDTO.CreateGroup.class) @RequestBody UserDTO userDTO) {
+    return ResponseEntity.ok("User created");
+}
+
+@PutMapping("/{id}")
+public ResponseEntity<String> updateUser(@Validated(UserDTO.UpdateGroup.class) @RequestBody UserDTO userDTO) {
+    return ResponseEntity.ok("User updated");
+}
+```
+
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:21px">
+
+## **4. Validation personnalisée avec des annotations custom**
+
+Si les validations standards ne suffisent pas, créez vos propres annotations.
+
+### a. Créez une annotation custom
+```java
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+
+import java.lang.annotation.*;
+
+@Documented
+@Constraint(validatedBy = NameValidator.class)
+@Target({ElementType.FIELD})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface ValidName {
+    String message() default "Invalid name";
+    Class<?>[] groups() default {};
+    Class<? extends Payload>[] payload() default {};
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:24px">
+
+## **4. Validation personnalisée avec des annotations custom**
+
+Si les validations standards ne suffisent pas, créez vos propres annotations.
+
+### b. Implémentez le validateur
+```java
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
+
+public class NameValidator implements ConstraintValidator<ValidName, String> {
+
+    @Override
+    public boolean isValid(String value, ConstraintValidatorContext context) {
+        return value != null && value.matches("^[A-Za-z]*$");
+    }
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:27px">
+
+## **4. Validation personnalisée avec des annotations custom**
+
+Si les validations standards ne suffisent pas, créez vos propres annotations.
+
+### c. Utilisez l’annotation dans votre DTO
+```java
+public class UserDTO {
+
+    @ValidName
+    private String name;
+
+    // Autres champs et getters/setters
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La validation avec l’API Bean Jakarta Validation.
+
+<div style="font-size:19px">
+
+## **6. Tester l’API avec Postman**
+
+### Exemple de requête POST :
+**Endpoint :** `POST /api/v1/users`  
+**Body :**
+```json
+{
+    "id": 1,
+    "name": "",
+    "email": "invalid-email",
+    "age": 17
+}
+```
+
+### Réponse attendue (400 Bad Request) :
+```json
+{
+    "name": "Name is required",
+    "email": "Email must be valid",
+    "age": "Age must be at least 18"
+}
+```
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:29px">
+<br>
+
+La gestion des exceptions dans une **API REST Spring Boot** est essentielle pour fournir des réponses claires et uniformes aux erreurs qui surviennent lors du traitement des requêtes. 
+
+## **1. Pourquoi gérer les exceptions ?**
+
+- Fournir des réponses cohérentes.
+- Masquer les détails techniques des exceptions.
+- Aider les clients de l'API à comprendre les erreurs.
+- Simplifier la maintenance et le débogage.
+
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:17px">
+
+## **2. Approche globale : `@RestControllerAdvice`**
+
+L’annotation `@RestControllerAdvice` permet de gérer globalement les exceptions pour tous les controllers REST.
+
+### Exemple de gestionnaire global des exceptions :
+```java
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    // Gestion des exceptions spécifiques
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<Map<String, Object>> handleResourceNotFoundException(
+            ResourceNotFoundException ex, WebRequest request) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.NOT_FOUND.value());
+        body.put("error", "Resource Not Found");
+        body.put("message", ex.getMessage());
+        body.put("path", request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(body);
+    }
+// suite
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:17px">
+
+## **2. Approche globale : `@RestControllerAdvice`**
+
+L’annotation `@RestControllerAdvice` permet de gérer globalement les exceptions pour tous les controllers REST.
+
+### Exemple de gestionnaire global des exceptions :
+```java
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    // suite
+    // Gestion des exceptions générales
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, Object>> handleGlobalException(Exception ex, WebRequest request) {
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.INTERNAL_SERVER_ERROR.value());
+        body.put("error", "Internal Server Error");
+        body.put("message", ex.getMessage());
+        body.put("path", request.getDescription(false));
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
+    }
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:15px">
+
+## **3. Exceptions spécifiques**
+
+Définissez des exceptions personnalisées pour des cas spécifiques dans votre application.
+
+### Exemple d'exception personnalisée :
+```java
+public class ResourceNotFoundException extends RuntimeException {
+    public ResourceNotFoundException(String message) {
+        super(message);
+    }
+}
+```
+Utilisation dans un controller :
+```java
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/v1/resources")
+public class ResourceController {
+
+    @GetMapping("/{id}")
+    public String getResource(@PathVariable String id) {
+        if ("404".equals(id)) {
+            throw new ResourceNotFoundException("Resource with ID " + id + " not found");
+        }
+        return "Resource found";
+    }
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:21px">
+
+## **4. Gestion des exceptions de validation**
+
+Les erreurs de validation générées par **Jakarta Validation** sont gérées via `MethodArgumentNotValidException` pour les requêtes `@RequestBody` ou `ConstraintViolationException` pour les paramètres de requête.
+
+### Exemple pour `MethodArgumentNotValidException` :
+```java
+@ExceptionHandler(MethodArgumentNotValidException.class)
+public ResponseEntity<Map<String, Object>> handleValidationException(MethodArgumentNotValidException ex) {
+    Map<String, String> errors = new HashMap<>();
+    ex.getBindingResult().getFieldErrors().forEach(error -> {
+        errors.put(error.getField(), error.getDefaultMessage());
+    });
+    Map<String, Object> body = new HashMap<>();
+    body.put("timestamp", LocalDateTime.now());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("errors", errors);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+}
+```
+</div>
+
+---
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:23px">
+
+## **4. Gestion des exceptions de validation**
+
+
+
+### Exemple pour `ConstraintViolationException` :
+```java
+@ExceptionHandler(ConstraintViolationException.class)
+public ResponseEntity<Map<String, Object>> handleConstraintViolation(ConstraintViolationException ex) {
+    Map<String, String> errors = new HashMap<>();
+    ex.getConstraintViolations().forEach(violation -> {
+        String field = violation.getPropertyPath().toString();
+        errors.put(field, violation.getMessage());
+    });
+    Map<String, Object> body = new HashMap<>();
+    body.put("timestamp", LocalDateTime.now());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("errors", errors);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+}
+```
+</div>
+
+---
+
+
+### API REST avec Spring MVC et Spring WebFlux
+
+#### La gestion des exceptions
+
+<div style="font-size:23px">
+
+## **4. Gestion des exceptions de validation**
+
+
+
+### Exemple pour `ConstraintViolationException` :
+```java
+@ExceptionHandler(ConstraintViolationException.class)
+public ResponseEntity<Map<String, Object>> handleConstraintViolation(ConstraintViolationException ex) {
+    Map<String, String> errors = new HashMap<>();
+    ex.getConstraintViolations().forEach(violation -> {
+        String field = violation.getPropertyPath().toString();
+        errors.put(field, violation.getMessage());
+    });
+    Map<String, Object> body = new HashMap<>();
+    body.put("timestamp", LocalDateTime.now());
+    body.put("status", HttpStatus.BAD_REQUEST.value());
+    body.put("errors", errors);
+    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(body);
+}
+```
+</div>
 
 ---
 
@@ -1422,16 +3579,773 @@ Apache HTTPD 2.4 introduit le support natif du protocole **HTTP/2** via le modul
 <!-- _class: lead -->
 <!-- _paginate: false -->
 
-## Contrôle d'accès et authentification
+## Accès aux données et gestion des transactions
 
 ---
-## Contrôle d'accès et authentification
+
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:39px">
 
 <br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
 
+Accéder à une base de données relationnelle dans une application Spring nécessite l'intégration d'une bibliothèque de gestion de persistance, comme **Spring Data JPA**, pour interagir avec la base de données.
+
+</div>
+
+---
+
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:16px">
+
+## **1. Ajouter les dépendances nécessaires**
+
+Ajoutez les dépendances dans le fichier `pom.xml` si vous utilisez Maven :
+
+```xml
+<dependencies>
+    <!-- Spring Data JPA -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <!-- Driver de la base de données (par exemple pour MySQL) -->
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <!-- (Optionnel) H2 pour une base de données en mémoire -->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+```
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:23px">
+
+## **2. Configurer la base de données dans `application.properties`**
+
+Ajoutez les configurations pour la connexion à la base de données :
+
+### Exemple : MySQL
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/my_database
+spring.datasource.username=root
+spring.datasource.password=secret
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Configuration de JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.database-platform=org.hibernate.dialect.MySQL8Dialect
+```
+
+</div>
+
+---
+
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:19px">
+
+## **2. Configurer la base de données dans `application.properties`**
+
+Ajoutez les configurations pour la connexion à la base de données :
+
+### Exemple : H2 (Base en mémoire pour tests)
+```properties
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+# Activer la console H2
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+# Configuration de JPA
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:17px">
+
+## **3. Créer une entité JPA**
+
+Les entités JPA représentent les tables de votre base de données. Annotées avec `@Entity`, elles sont gérées par Hibernate ou un autre ORM.
+
+### Exemple d'entité : `User`
+
+```java
+import jakarta.persistence.*;
+import java.time.LocalDate;
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, length = 50)
+    private String name;
+    @Column(nullable = false, unique = true)
+    private String email;
+    private LocalDate birthDate;
+    // Getters et setters
+}
+```
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:25px">
+
+## **4. Créer un Repository**
+
+Spring Data JPA fournit des interfaces prêtes à l’emploi pour interagir avec la base de données. La plus courante est `JpaRepository`.
+
+### Exemple de Repository :
+
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    // Requêtes spécifiques
+    User findByEmail(String email);
+}
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:15px">
+
+## **5. Implémenter la couche Service**
+
+La couche **Service** contient la logique métier et fait appel au repository.
+
+```java
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+    public User createUser(User user) {
+        return userRepository.save(user);
+    }
+    public User updateUser(Long id, User userDetails) {
+        User user = getUserById(id);
+        user.setName(userDetails.getName());
+        user.setEmail(userDetails.getEmail());
+        user.setBirthDate(userDetails.getBirthDate());
+        return userRepository.save(user);
+    }
+}
+```
+</div>
+
+---
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:25px">
+
+## **9. Étendre les fonctionnalités**
+
+- **Pagination et tri** :
+  ```java
+  Page<User> findAll(Pageable pageable);
+  ```
+
+- **Requêtes personnalisées** avec JPQL ou SQL natif :
+  ```java
+  @Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
+  List<User> findByNameContaining(@Param("name") String name);
+  ```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:25px">
+
+## **10. JPQL et HQL ?**
+
+<br>
+
+- **JPQL** : Langage de requêtes utilisé avec JPA (Java Persistence API) pour interroger les entités définies dans vos classes Java. Il est indépendant de la base de données.
+- **HQL** : Version de JPQL spécifique à Hibernate, mais similaire dans la syntaxe.
+
+<br>
+
+Les deux se basent sur les entités Java et leurs champs plutôt que sur les tables et colonnes de la base de données.
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:16px">
+
+## **10. JPQL et HQL ?**
+
+#### Configuration de base
+
+##### Exemple d'entité : `User`
+
+```java
+import jakarta.persistence.*;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false, unique = true)
+    private String email;
+    private Integer age;
+    private String city;
+
+    // Getters et setters
+}
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:23px">
+
+## **10. JPQL et HQL ?**
+
+#### Configuration de base
+
+### Exemple de Repository
+
+```java
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+    // JPQL ou HQL s'utilise ici avec @Query
+}
+```
+
+</div>
+
+---
+
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:22px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+#### **a. Requêtes de base**
+
+##### 1. Récupérer tous les utilisateurs
+```java
+@Query("SELECT u FROM User u")
+List<User> findAllUsers();
+```
+
+##### 2. Filtrer par un champ
+
+```java
+@Query("SELECT u FROM User u WHERE u.city = :city")
+List<User> findUsersByCity(@Param("city") String city);
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:25px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+#### **a. Requêtes de base**
+
+#### 3. Trier les résultats
+
+```java
+@Query("SELECT u FROM User u ORDER BY u.name ASC")
+List<User> findAllUsersSortedByName();
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:20px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+#### **a. Requêtes de base**
+
+#### 4. Limiter les résultats
+Avec Spring Data JPA, utilisez `Pageable` :
+```java
+@Query("SELECT u FROM User u")
+List<User> findUsers(Pageable pageable);
+```
+Exemple d'appel :
+```java
+Pageable pageable = PageRequest.of(0, 5);
+List<User> users = userRepository.findUsers(pageable);
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:17px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+### **b. Requêtes avec des paramètres complexes**
+
+#### 1. Requêtes utilisant plusieurs paramètres
+```java
+@Query("SELECT u FROM User u WHERE u.city = :city AND u.age >= :minAge")
+List<User> findUsersByCityAndMinAge(@Param("city") String city, @Param("minAge") Integer minAge);
+```
+
+#### 2. Requêtes avec LIKE (recherche partielle)
+```java
+@Query("SELECT u FROM User u WHERE u.name LIKE %:name%")
+List<User> findUsersByNameContaining(@Param("name") String name);
+```
+
+#### 3. Requêtes avec IN
+```java
+@Query("SELECT u FROM User u WHERE u.city IN :cities")
+List<User> findUsersByCities(@Param("cities") List<String> cities);
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:20px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+### **c. Agrégations et fonctions**
+
+#### 1. Compter les utilisateurs
+```java
+@Query("SELECT COUNT(u) FROM User u")
+Long countAllUsers();
+```
+
+#### 2. Trouver l'âge moyen des utilisateurs
+```java
+@Query("SELECT AVG(u.age) FROM User u")
+Double findAverageAge();
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:20px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+### **c. Agrégations et fonctions**
+
+#### 3. Trouver l'utilisateur le plus âgé
+```java
+@Query("SELECT u FROM User u WHERE u.age = (SELECT MAX(u2.age) FROM User u2)")
+User findOldestUser();
+```
+
+#### 4. Grouper les utilisateurs par ville
+```java
+@Query("SELECT u.city, COUNT(u) FROM User u GROUP BY u.city")
+List<Object[]> countUsersByCity();
+```
+Résultat : Chaque `Object[]` contient une ville et le nombre d'utilisateurs dans cette ville.
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:17px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+### **d. Requêtes de mise à jour et suppression**
+
+#### 1. Mise à jour
+```java
+@Modifying
+@Query("UPDATE User u SET u.city = :city WHERE u.id = :id")
+int updateUserCity(@Param("id") Long id, @Param("city") String city);
+```
+> **Remarque** : Ajoutez `@Transactional` à la méthode d'appel pour assurer l'exécution.
+
+#### 2. Suppression
+```java
+@Modifying
+@Query("DELETE FROM User u WHERE u.age < :age")
+int deleteUsersYoungerThan(@Param("age") Integer age);
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### L’accès à une base de données relationnelle depuis une application Spring.
+
+<div style="font-size:25px">
+
+## **10. JPQL et HQL ?**
+
+### Exemples de requêtes JPQL et HQL
+
+### **e. Requêtes natives**
+
+Lorsque JPQL ou HQL ne suffisent pas, utilisez SQL natif :
+
+```java
+@Query(value = "SELECT * FROM user WHERE city = :city", nativeQuery = true)
+List<User> findUsersByCityNative(@Param("city") String city);
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:35px">
+
+<br>
+
+- La gestion des transactions est essentielle dans les applications Spring pour garantir l'intégrité des données lors d'opérations impliquant plusieurs étapes ou modifications.
+
+- Spring simplifie cette gestion avec son **module transactionnel**, basé sur les annotations et l'abstraction des APIs sous-jacentes comme JPA ou JDBC.
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:30px">
+<br>
+
+#### **1. Pourquoi gérer les transactions ?**
+
+Les transactions assurent que les opérations sur les bases de données sont :
+- **Atomiques** : Toutes les opérations réussissent ou échouent en bloc.
+- **Consistantes** : L'état de la base reste cohérent avant et après la transaction.
+- **Isolées** : Les transactions n'interfèrent pas les unes avec les autres.
+- **Durables** : Les modifications réussies sont persistées, même après une panne.
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:19px">
+<br>
+
+## **2. Configuration de la gestion des transactions**
+
+### a. Ajouter les dépendances
+
+Assurez-vous que Spring Data JPA ou JDBC est inclus dans votre projet. Exemple avec Maven :
+
+```xml
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+```
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:23px">
+<br>
+
+## **2. Configuration de la gestion des transactions**
+
+### b. Activer la gestion des transactions
+
+Ajoutez l'annotation `@EnableTransactionManagement` dans une classe de configuration ou la classe principale de votre application.
+
+```java
+import org.springframework.context.annotation.Configuration;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+@Configuration
+@EnableTransactionManagement
+public class TransactionConfig {
+    // Configuration additionnelle si nécessaire
+}
+```
+
+</div>
+
+---
+
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:26px">
+<br>
+
+## **3 Portée de l'annotation @Transactional**
+
+- **Au niveau de la classe** : Toutes les méthodes sont transactionnelles.
+- **Au niveau de la méthode** : Spécifique à une méthode.
+
+```java
+@Service
+@Transactional // Toutes les méthodes de cette classe sont transactionnelles
+public class AccountService { }
+
+@Transactional // Méthode transactionnelle
+public void transferMoney(Long fromAccountId, Long toAccountId, Double amount) { }
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:19px">
+<br>
+
+## **4. Options avancées avec @Transactional**
+
+### a. Propagation des transactions
+
+Définit comment une transaction existante est propagée ou non. Types principaux :
+- **REQUIRED** (par défaut) : Reutilise une transaction existante ou en crée une nouvelle.
+- **REQUIRES_NEW** : Suspends la transaction existante et en démarre une nouvelle.
+- **MANDATORY** : Exige une transaction existante, sinon lève une exception.
+- **SUPPORTS** : Exécute dans une transaction existante, mais n'en crée pas.
+- **NOT_SUPPORTED** : Exécute hors transaction, même si une transaction existe.
+
+Exemple :
+```java
+@Transactional(propagation = Propagation.REQUIRES_NEW)
+public void performOperation() {
+    // Code exécuté dans une nouvelle transaction
+}
+```
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:23px">
+<br>
+
+## **4. Options avancées avec @Transactional**
+
+### b. Gestion des exceptions
+
+- **Rollback automatique** : Par défaut, les exceptions non vérifiées (`RuntimeException`) provoquent un rollback. Les exceptions vérifiées (`CheckedException`) ne le font pas, sauf si explicitement configurées.
+
+Exemple :
+```java
+@Transactional(rollbackFor = Exception.class) // Rollback pour toutes les exceptions
+public void performOperation() throws Exception {
+    // Code transactionnel
+}
+```
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:21px">
+<br>
+
+## **4. Options avancées avec @Transactional**
+
+### c. Isolation
+
+Définit le niveau d'isolation pour éviter les problèmes comme les lectures sales, non répétables ou les fantômes. Principaux niveaux :
+- **READ_COMMITTED** (par défaut avec de nombreuses bases) : Empêche les lectures sales.
+- **REPEATABLE_READ** : Empêche les lectures non répétables.
+- **SERIALIZABLE** : Le niveau le plus strict ; évite les lectures fantômes.
+
+Exemple :
+```java
+@Transactional(isolation = Isolation.REPEATABLE_READ)
+public void performOperation() {
+    // Code transactionnel
+}
+```
+
+</div>
+
+---
+
+### Accès aux données et gestion des transactions
+
+#### La gestion des transactions
+
+<div style="font-size:25px">
+<br>
+
+## **4. Options avancées avec @Transactional**
+
+### d. Timeout
+
+Spécifie la durée maximale (en secondes) avant qu'une transaction expire.
+
+```java
+@Transactional(timeout = 10) // Timeout de 10 secondes
+public void performOperation() {
+    // Code transactionnel
+}
+```
+
+
+</div>
 
 ---
 
@@ -1439,75 +4353,414 @@ Apache HTTPD 2.4 introduit le support natif du protocole **HTTP/2** via le modul
 <!-- _class: lead -->
 <!-- _paginate: false -->
 
-## Redirection, réécriture d'adresses, filtres
+## IHM Web avec Spring MVC
 
 ---
 
-## Redirection, réécriture d'adresses, filtres
+
+## IHM Web avec Spring MVC
+
+#### Rappel du pattern MVC
+
+<div style="font-size:38px">
 
 <br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
 
+- Le **pattern MVC (Model-View-Controller)** est un modèle d'architecture logicielle utilisé pour séparer les préoccupations dans une application. 
+- Il est particulièrement utile pour organiser les applications où une interface utilisateur (UI) est impliquée, comme les applications web.
 
----
-
-<!-- _class: lead -->
-<!-- _paginate: false -->
-
-## Reverse Proxy et Cache
+</div>
 
 ---
 
-## Reverse Proxy et Cache
+## IHM Web avec Spring MVC
+
+### Rappel du pattern MVC
+
+<div style="font-size:22px">
+
+#### **Structure du pattern MVC**
+
+#### **1. Model (Modèle)**
+- **Rôle :**
+  - Représente les données de l'application ainsi que la logique métier.
+  - Communique avec la base de données pour récupérer ou persister les données.
+- **Responsabilités :**
+  - Manipuler les données de manière cohérente.
+  - Notifier la vue (et parfois le contrôleur) des changements d'état.
+- **Exemple dans Spring :**
+  Les **entités JPA**, les DTOs (Data Transfer Objects), ou les services qui encapsulent la logique métier.
+
+</div>
+
+---
+
+## IHM Web avec Spring MVC
+
+### Rappel du pattern MVC
+
+<div style="font-size:22px">
+
+#### **Structure du pattern MVC**
+
+#### **2. View (Vue)**
+- **Rôle :**
+  - Responsable de l'affichage des données à l'utilisateur.
+  - Reçoit les données du modèle via le contrôleur et les rend sous une forme appropriée (HTML, JSON, XML, etc.).
+- **Responsabilités :**
+  - Présenter les données de manière claire et lisible.
+  - Capturer les actions de l'utilisateur via des formulaires ou des événements.
+- **Exemple dans Spring :**
+  Les technologies comme **Thymeleaf**, **JSP**, ou des formats comme **JSON**/ **XML** pour les APIs REST.
+
+</div>
+
+---
+
+### IHM Web avec Spring MVC
+
+#### Rappel du pattern MVC
+
+<div style="font-size:20px">
+
+#### **Structure du pattern MVC**
+
+#### **3. Controller (Contrôleur)**
+- **Rôle :**
+  - Sert d'intermédiaire entre la vue et le modèle.
+  - Gère les requêtes utilisateur (HTTP dans les applications web).
+  - Coordonne les opérations sur le modèle et détermine quelle vue retourner.
+- **Responsabilités :**
+  - Recevoir les entrées utilisateur.
+  - Inviter le modèle à mettre à jour les données.
+  - Retourner la vue appropriée avec les données nécessaires.
+- **Exemple dans Spring :**
+  Les **controllers** annotés avec `@Controller` ou `@RestController`.
+
+</div>
+
+---
+
+## IHM Web avec Spring MVC
+
+#### Rappel du pattern MVC
+
+<div style="font-size:22px">
+
+## **Communication dans MVC**
+
+- **De la Vue au Contrôleur :**
+  - L'utilisateur interagit avec l'interface (ex. : un formulaire web).
+  - Les données sont envoyées au contrôleur via une requête (GET, POST, etc.).
+
+- **Du Contrôleur au Modèle :**
+  - Le contrôleur demande au modèle de manipuler ou de récupérer les données nécessaires.
+
+- **Du Modèle au Contrôleur :**
+  - Le modèle renvoie les données traitées au contrôleur.
+
+- **Du Contrôleur à la Vue :**
+  - Le contrôleur fournit les données et détermine quelle vue doit être rendue.
+
+</div>
+
+---
+
+
+## IHM Web avec Spring MVC
+
+#### Rappel du pattern MVC
+
+<div style="font-size:19px">
+
+#### **Avantages du pattern MVC**
+
+1. **Séparation des préoccupations** :
+   - Le modèle gère les données et la logique.
+   - La vue s'occupe de l'interface utilisateur.
+   - Le contrôleur coordonne le tout.
+
+2. **Réutilisabilité** :
+   - Les vues peuvent être modifiées ou remplacées sans toucher au modèle ou au contrôleur.
+
+3. **Testabilité** :
+   - Les contrôleurs et modèles peuvent être testés indépendamment des vues.
+
+#### **Limites du pattern MVC**
+
+- Peut devenir complexe pour des applications de grande taille.
+- Les dépendances entre les composants doivent être bien gérées pour éviter le couplage.
+
+</div>
+
+---
+
+## IHM Web avec Spring MVC
+
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:35px">
 
 <br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
 
+- Thymeleaf est un moteur de template très utilisé pour construire les vues dans une application Spring MVC. 
+- Il fournit un ensemble de fonctionnalités comme l'accès au modèle, l'internationalisation et la gestion des exceptions.
 
----
-
-<!-- _class: lead -->
-<!-- _paginate: false -->
-
-## Sécuriser les échanges avec HTTPS
+</div>
 
 ---
 
-## Sécuriser les échanges avec HTTPS
+## IHM Web avec Spring MVC
 
-<br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
+#### Gestion des vues avec Thymeleaf dans Spring MVC
 
+<div style="font-size:17px">
+
+## **1. Accès au Modèle dans les Vues**
+
+Le modèle Spring est utilisé pour transmettre des données du contrôleur à la vue Thymeleaf.
+
+### Exemple simple :
+
+#### **Contrôleur :**
+```java
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+@Controller
+public class ProductController {
+
+    @GetMapping("/products")
+    public String showProducts(Model model) {
+        model.addAttribute("title", "Product List");
+        model.addAttribute("products", List.of(
+            new Product(1L, "Laptop", 1200.0),
+            new Product(2L, "Smartphone", 800.0)
+        ));
+        return "product";
+    }
+}
+```
+</div>
 
 ---
 
-<!-- _class: lead -->
-<!-- _paginate: false -->
+## IHM Web avec Spring MVC
 
-## Sécurité et détection d'attaques
+#### Gestion des vues avec Thymeleaf dans Spring MVC
 
+<div style="font-size:14px">
+
+## **1. Accès au Modèle dans les Vues**
+
+#### **Vue Thymeleaf (`product.html`) :**
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${title}"></title>
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${products}">
+                <td th:text="${product.id}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+```
+</div>
 
 ---
 
-## Sécurité et détection d'attaque
+## IHM Web avec Spring MVC
 
-<br>
-<center>
-<img src="./assets/practice.png" width="400px">
-</center>
+#### Gestion des vues avec Thymeleaf dans Spring MVC
 
+<div style="font-size:21px">
+
+## **1. Options dans Thymeleaf**
+
+Thymeleaf offre de nombreuses fonctionnalités pour manipuler les données, gérer les vues dynamiques et interagir avec les modèles.
+
+### **a. Affichage de texte et d’attributs dynamiques**
+
+- **Afficher une valeur dans un texte :**
+  ```html
+  <p th:text="${name}">Nom par défaut</p>
+  ```
+  Si `name = "John"`, cela affichera : `John`.
+
+- **Modifier un attribut HTML :**
+  ```html
+  <a th:href="@{/products/{id}(id=${product.id})}">Voir le produit</a>
+  ```
+  Produit une URL comme `/products/1`.
+
+</div>
 
 ---
 
-<br>
-<center>
-<img src="./assets/end.jpg" width="800px">
-</center>
 
+## IHM Web avec Spring MVC
 
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:22px">
+
+## **1. Options dans Thymeleaf**
+
+### **b. Boucles**
+
+- **Itération avec `th:each`:**
+  ```html
+  <ul>
+      <li th:each="product : ${products}" th:text="${product.name}"></li>
+  </ul>
+  ```
+  Affiche une liste de noms de produits.
+
+- **Index dans une boucle :**
+  ```html
+  <p th:each="product, iterStat : ${products}">
+      Produit <span th:text="${iterStat.index}"></span>: <span th:text="${product.name}"></span>
+  </p>
+  ```
+
+</div>
+
+---
+
+## IHM Web avec Spring MVC
+
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:25px">
+
+## **1. Options dans Thymeleaf**
+
+### **c. Conditions**
+
+- **Condition `if` avec `th:if`:**
+  ```html
+  <p th:if="${product.stock > 0}">En stock</p>
+  ```
+
+- **Condition `unless` (inverse de `if`):**
+  ```html
+  <p th:unless="${product.stock > 0}">Rupture de stock</p>
+  ```
+
+</div>
+
+---
+
+## IHM Web avec Spring MVC
+
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:30px">
+
+## **1. Options dans Thymeleaf**
+
+### **d. Affichage par défaut**
+
+- **Afficher une valeur par défaut si une variable est nulle :**
+  ```html
+  <p th:text="${name ?: 'Anonyme'}"></p>
+  ```
+
+</div>
+
+---
+## IHM Web avec Spring MVC
+
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:23px">
+
+## **1. Options dans Thymeleaf**
+
+### **e. Fragments et réutilisation de templates**
+
+- **Déclaration d'un fragment :**
+  Dans `header.html` :
+  ```html
+  <div th:fragment="header">
+      <h1>Bienvenue</h1>
+  </div>
+  ```
+
+- **Inclure un fragment :**
+  ```html
+  <div th:include="header :: header"></div>
+  ```
+
+</div>
+
+---
+
+## IHM Web avec Spring MVC
+
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:25px">
+
+## **1. Options dans Thymeleaf**
+
+### **f. Internationalisation**
+
+- **Afficher un message localisé :**
+  ```html
+  <h1 th:text="#{welcome.message}"></h1>
+  ```
+
+- **Passer des paramètres :**
+  ```html
+  <p th:text="#{greeting.message(${name})}"></p>
+  ```
+
+</div>
+
+---
+## IHM Web avec Spring MVC
+
+#### Gestion des vues avec Thymeleaf dans Spring MVC
+
+<div style="font-size:22px">
+
+## **1. Options dans Thymeleaf**
+
+### **g. Gérer les formulaires**
+
+- **Formulaire Thymeleaf :**
+  ```html
+  <form th:action="@{/saveProduct}" th:object="${product}" method="post">
+      <input type="text" th:field="*{name}" placeholder="Nom du produit"/>
+      <input type="number" th:field="*{price}" placeholder="Prix"/>
+      <button type="submit">Enregistrer</button>
+  </form>
+  ```
+
+- **Afficher des messages d'erreur (BindingResult) :**
+  ```html
+  <ul th:if="${#fields.hasErrors('name')}">
+      <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+  </ul>
+  ```
+
+</div>
+
+---
